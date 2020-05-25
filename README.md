@@ -42,3 +42,14 @@ CREATE TABLE 'login' (
 );
 ```
 
+## Uso
+
+Al iniciar el programa por primera vez, se instalará la base de datos, te pedirá tu usuario y tu contraseña para iniciar sesion, al igual que la llave
+para desencriptar tus credenciales de login.
+
+luego se abrirá el menu, en el cual podras buscar, agregar, editar y eliminar credenciales de tus sitios web o aplicaciones favoritas.
+
+### Buscar, añadir y editar credenciales
+
+Cuando hagas cualqueira de estas acciones, se te pedira una llave con la cual se encriptarán esas credenciales, al editar alguna parte asegurate de usar
+la misma llave con la que la creaste para evitar errores.
