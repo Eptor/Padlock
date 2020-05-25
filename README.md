@@ -12,8 +12,8 @@ pip install cryptography sqlite3 pyperclip -y
 
 ## Instalación
 
-En el GUI viene automatizado, pero si quieres hacerlo manualmente deberas crear una base de datos sqlite (con el nombre que desees)
-con las tablas "login" y "creds", ambas con las siguientes filas:
+La instalacion es automatica, pero si deseas crear la base de datos tu mismo deberas crearla con el nombre "Padlock.db" en el directorio "Database" dentro de la
+raiz del proyecto. La base de datos debera contener las siguientes tablas con sus respectivas filas.
 
 
 ### login:
@@ -22,7 +22,7 @@ username, password
 ### creds:
 Name, Email_Username, Password, Link
 
-Todos de tipo texto.
+**Todos de tipo texto.**
 
 Puedes usar estos comandos:
 
