@@ -3,11 +3,14 @@
 # Installed Modules
 import sqlite3
 import pyperclip
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 # Local Modules
 from Defs.crypto_defs import encrypt, decrypt
 
 database = 'Database/Padlock.db'
+critical_icon = 'Icons/alert-triangle.png'
+
 
 class SQL_QUERIES:
 
@@ -101,4 +104,21 @@ class SQL_QUERIES:
             self.conn.commit()
 
 
-
+    def delete(self, name):
+        try:
+            self.cursor.execute(f"DELETE FROM creds WHERE Name = '{name}'")
+        except Exception as e:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setWindowIcon(QtGui.QIcon(critical_icon))
+            msg.setText(f'{name} no se pudo actualizar!')
+            msg.setInformativeText(e)
+            msg.setWindowTitle("Error")
+            msg.exec_()
+        else:
+            msg = QtWidgets.QMessageBox()
+            msg.setIcon(QtWidgets.QMessageBox.Information)
+            msg.setText(f'{name} eliminado')
+            msg.setWindowTitle("Eliminado!")
+            msg.exec_()
+            self.conn.commit()

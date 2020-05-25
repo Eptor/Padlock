@@ -5,7 +5,7 @@ from Windows.add import *
 from Windows.edit_selection import *
 from install import install
 
-from Defs.sql_queries import SQL_QUERIES
+from Defs.sql_queries import *
 import pyperclip
 import os
 
@@ -55,7 +55,7 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
         self.Search_Button.clicked.connect(self.search_by_name)
         self.Add_Button.clicked.connect(self.add_creds)
-        # self.Delete_Button.clicked.connect(self.delete_data)
+        self.Delete_Button.clicked.connect(self.delete_data)
         self.Edit_Button.clicked.connect(self.edit)
         self.Update_Button.clicked.connect(self.update)
 
@@ -77,15 +77,15 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
     def search_by_name(self):
         try:
-            name = self.All_List.selectedIndexes()[0].data()
+            self.name = self.All_List.selectedIndexes()[0].data()
 
         except IndexError:
             pass
 
         else:
-            key = self.get_key()
+            self.key = self.get_key()
 
-            if not self.data.get_by_name(name, key):
+            if not self.data.get_by_name(self.name, self.key):
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowIcon(QtGui.QIcon(critical_icon))
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
@@ -94,10 +94,16 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
                 msg.exec_()
 
             else:
-                creds = self.data.get_by_name(name, key)
+                creds = self.data.get_by_name(self.name, self.key)
                 self.show_data = see_data(creds)
                 self.show_data.show()
 
+    def delete_data(self):
+        self.name = self.name = self.All_List.selectedIndexes()[0].data()
+        if self.get_confirmation():
+            self.data.delete(self.name)
+        else:
+            pass
 
     def add_creds(self):
         self.add = add()
@@ -109,6 +115,13 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
         if okPressed and key != '':
             return key
 
+    def get_confirmation(self):
+        ok, okPressed = QtWidgets.QInputDialog.getText(self, "Confirmación","SI o NO:", QtWidgets.QLineEdit.Normal, "")
+        if okPressed and ok.upper() == 'SI':
+            return True
+        else:
+            return False
+
 
 class see_data(QtWidgets.QMainWindow, Ui_Data):
 
@@ -117,6 +130,8 @@ class see_data(QtWidgets.QMainWindow, Ui_Data):
     def __init__(self, creds, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon('Icons/search.png'))
+
 
         for i in creds:
             self.Data_List.addItem(i)
@@ -135,6 +150,7 @@ class add(QtWidgets.QMainWindow, Ui_ADD):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.data = SQL_QUERIES()
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon('Icons/pencil-create.png'))
 
 
 class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
@@ -146,6 +162,7 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
         self.data = SQL_QUERIES()
         self.name = name
         self.setupUi(self)
+        self.setWindowIcon(QtGui.QIcon('Icons/pencil-edit.png'))
 
 
     def edit_action(self):

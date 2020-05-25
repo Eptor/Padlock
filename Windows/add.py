@@ -5,7 +5,6 @@ class Ui_ADD(object):
     def setupUi(self, ADD):
         ADD.setObjectName("ADD")
         ADD.resize(133, 192)
-        self.setWindowIcon(QtGui.QIcon('Iconos/pencil-create.png'))
         self.Name_Input = QtWidgets.QLineEdit(ADD)
         self.Name_Input.setGeometry(QtCore.QRect(10, 10, 113, 20))
         self.Name_Input.setAlignment(QtCore.Qt.AlignCenter)
