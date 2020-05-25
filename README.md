@@ -27,18 +27,18 @@ Todos de tipo texto.
 Puedes usar estos comandos:
 
 ```
-CREATE TABLE `creds` (
-    `Name`  TEXT,
-    `Email_Username`    TEXT,
-    `Password`  TEXT,
-    `Link`  TEXT
+CREATE TABLE 'creds' (
+    'Name'  TEXT,
+    'Email_Username'    TEXT,
+    'Password'  TEXT,
+    'Link'  TEXT
 );
 ```
 
 ```
-CREATE TABLE `login` (
-    `username`  TEXT,
-    `password`  TEXT
+CREATE TABLE 'login' (
+    'username'  TEXT,
+    'password'  TEXT
 );
 ```
 

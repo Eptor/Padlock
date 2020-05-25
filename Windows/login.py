@@ -9,6 +9,7 @@ class Ui_Login_Window(object):
     def setupUi(self, Login_Window):
         Login_Window.setObjectName("Login_Window")
         Login_Window.resize(240, 167)
+        self.setWindowIcon(QtGui.QIcon('Icons/key.png'))
         self.centralwidget = QtWidgets.QWidget(Login_Window)
         self.centralwidget.setObjectName("centralwidget")
         self.User_Input = QtWidgets.QLineEdit(self.centralwidget)
@@ -52,4 +53,9 @@ class Ui_Login_Window(object):
         self.Password_Label.setText(_translate("Login_Window", "PASSWORD:"))
         self.Login_Button.setText(_translate("Login_Window", "LOGIN"))
         self.Login_Button.setShortcut(_translate("Login_Window", "Return"))
+
+    def get_key(self):
+        key, okPressed = QtWidgets.QInputDialog.getText(self,"Key","Tu Key:", QtWidgets.QLineEdit.Normal, "")
+        if okPressed and key != '':
+            return key
 

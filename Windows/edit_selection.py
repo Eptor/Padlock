@@ -4,6 +4,7 @@ class Ui_Edit_Selection(object):
     def setupUi(self, Edit_Selection):
         Edit_Selection.setObjectName("Edit_Selection")
         Edit_Selection.resize(319, 53)
+        self.setWindowIcon(QtGui.QIcon('Icons/pencil-edit.png'))
         self.centralwidget = QtWidgets.QWidget(Edit_Selection)
         self.centralwidget.setObjectName("centralwidget")
         self.Name_Radio = QtWidgets.QRadioButton(self.centralwidget)

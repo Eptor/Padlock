@@ -5,6 +5,7 @@ class Ui_Menu_Window(object):
     def setupUi(self, Menu_Window):
         Menu_Window.setObjectName("Menu_Window")
         Menu_Window.resize(442, 171)
+        self.setWindowIcon(QtGui.QIcon('Icons/lock.png'))
         self.centralwidget = QtWidgets.QWidget(Menu_Window)
         self.centralwidget.setObjectName("centralwidget")
         self.Search_Button = QtWidgets.QPushButton(self.centralwidget)

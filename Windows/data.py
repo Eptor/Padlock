@@ -5,6 +5,7 @@ class Ui_Data(object):
     def setupUi(self, Data):
         Data.setObjectName("Data")
         Data.resize(301, 190)
+        self.setWindowIcon(QtGui.QIcon('Icons/search.png'))
         self.Data_List = QtWidgets.QListWidget(Data)
         self.Data_List.setGeometry(QtCore.QRect(10, 10, 281, 141))
         self.Data_List.setObjectName("Data_List")

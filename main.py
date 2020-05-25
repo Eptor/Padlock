@@ -3,10 +3,13 @@ from Windows.menu import *
 from Windows.data import *
 from Windows.add import *
 from Windows.edit_selection import *
+from install import install
 
 from Defs.sql_queries import SQL_QUERIES
 import pyperclip
+import os
 
+critical_icon = 'Icons/alert-triangle.png'
 
 class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
@@ -23,16 +26,18 @@ class login(QtWidgets.QMainWindow, Ui_Login_Window):
     def Check(self):
 
         ''' Verificates if the given credentials are correct '''
+        self.key = self.get_key()
 
         self.user = self.User_Input.text()
         self.password = self.Password_Input.text()
-        if self.data.get_login_credentials(self.user, self.password):
+        if self.data.get_login_credentials(self.user, self.password, self.key):
             self.close()
             self.menu = menu()
             self.menu.show()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
+            msg.setWindowIcon(QtGui.QIcon(critical_icon))
             msg.setText("Contraseña incorrecta")
             msg.setWindowTitle("Contraseña incorrecta")
             msg.exec_()
@@ -79,19 +84,19 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
         else:
             key = self.get_key()
-            creds = self.data.get_by_name(name, key)
 
-            try:
-                self.show_data = see_data(creds)
-
-            except InvalidToken:
+            if not self.data.get_by_name(name, key):
                 msg = QtWidgets.QMessageBox()
+                msg.setWindowIcon(QtGui.QIcon(critical_icon))
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
                 msg.setText("Key incorrecta")
                 msg.setWindowTitle("Key incorrecta")
                 msg.exec_()
 
-            self.show_data.show()
+            else:
+                creds = self.data.get_by_name(name, key)
+                self.show_data = see_data(creds)
+                self.show_data.show()
 
 
     def add_creds(self):
@@ -158,10 +163,47 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
 
         self.close()
 
+class install_methods(QtWidgets.QMainWindow):
 
-if __name__ == "__main__":
+    def get_key(self):
+        key, okPressed = QtWidgets.QInputDialog.getText(self,"Key","Tu Key:", QtWidgets.QLineEdit.Normal, "")
+        if okPressed and key != '':
+            return key
+
+    def get_user(self):
+        text, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Tu Usuario:", QtWidgets.QLineEdit.Normal, "")
+        if okPressed and text != '':
+            return text
+
+    def get_password(self):
+        text, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Tu Contraseña:", QtWidgets.QLineEdit.Normal, "")
+        if okPressed and text != '':
+            return text
+
+
+if __name__ == "__main__" and os.path.exists('Database/Padlock.db'):
     app = QtWidgets.QApplication([])
     app.setStyleSheet(open('style.css').read())
     login_gui = login()
     login_gui.show()
     app.exec_()
+
+elif __name__ == '__main__' and not os.path.exists('Database/Padlock.db'):
+    try:
+        app = QtWidgets.QApplication([])
+        app.setStyleSheet(open('style.css').read())
+        login_gui = login()
+        login_gui.show()
+
+        install_texts = install_methods()
+        # Asks for Key
+        key = install_texts.get_key()
+
+        # Asks for user and password
+        user = install_texts.get_user()
+        password = install_texts.get_password()
+
+        install(login_gui, user, password, key)
+
+    except Exception as e:
+        print(e)
