@@ -38,16 +38,16 @@ class Ui_ADD(object):
     def retranslateUi(self, ADD):
         _translate = QtCore.QCoreApplication.translate
         ADD.setWindowTitle(_translate("ADD", "ADD"))
-        self.Name_Input.setPlaceholderText(_translate("ADD", "Name"))
-        self.Mail_Input.setPlaceholderText(_translate("ADD", "Mail / User"))
-        self.Password_Input.setPlaceholderText(_translate("ADD", "Password"))
+        self.Name_Input.setPlaceholderText(_translate("ADD", "Nombre"))
+        self.Mail_Input.setPlaceholderText(_translate("ADD", "Mail / Usuario"))
+        self.Password_Input.setPlaceholderText(_translate("ADD", "Contraseña"))
         self.Link_Input.setPlaceholderText(_translate("ADD", "Link"))
-        self.Add_Action_Button.setText(_translate("ADD", "ADD"))
-        self.Cancel_Button.setText(_translate("ADD", "CANCEL"))
+        self.Add_Action_Button.setText(_translate("ADD", "AÑADIR"))
+        self.Cancel_Button.setText(_translate("ADD", "CANCELAR"))
 
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Llave", "Tu llave:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and key != "":
@@ -55,7 +55,8 @@ class Ui_ADD(object):
 
     def add_credentials(self, key):
 
-        """ Adds a new record to the database """
+        """ Añade una entrada nueva a la base de datos """
+
         key = self.get_key()
         self.name = self.Name_Input.text()
         self.mail_user = self.Mail_Input.text()
@@ -66,14 +67,14 @@ class Ui_ADD(object):
         ):
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{self.name} added!")
-            msg.setWindowTitle("Completed")
+            msg.setText(f"{self.name} Añadido!")
+            msg.setWindowTitle("Completado")
             msg.exec_()
             self.close()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText(f"{self.name} can't be added")
+            msg.setText(f"{self.name} no se pudo añadir")
             msg, informativeText(e)
             msg.setWindowTitle("Error")
             msg.exec_()

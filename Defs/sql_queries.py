@@ -95,7 +95,7 @@ class SQL_QUERIES:
         except Exception as e:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText("An error ocurred")
+            msg.setText("Ocurrio un error")
             msg.setWindowTitle("Error!")
             msg.exec_()
 
@@ -103,8 +103,8 @@ class SQL_QUERIES:
 
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{name} updated!")
-            msg.setWindowTitle("Update successful!")
+            msg.setText(f"{name} actualizado!")
+            msg.setWindowTitle("Completado!")
             msg.exec_()
             self.conn.commit()
 
@@ -115,14 +115,14 @@ class SQL_QUERIES:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
             msg.setWindowIcon(QtGui.QIcon(critical_icon))
-            msg.setText(f"{name} cant't be updated!")
+            msg.setText(f"{name} no se pudo actualizar!")
             msg.setInformativeText(e)
             msg.setWindowTitle("Error")
             msg.exec_()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{name} deleted")
-            msg.setWindowTitle("Deleted!")
+            msg.setText(f"{name} borrado!")
+            msg.setWindowTitle("Completado!")
             msg.exec_()
             self.conn.commit()

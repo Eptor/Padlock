@@ -14,7 +14,7 @@ critical_icon = "Icons/alert-triangle.png"
 
 class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
-    """ Creates the window with the given template """
+            """ Ventana del login """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -25,7 +25,7 @@ class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
     def Check(self):
 
-        """ Verificates if the given credentials are correct """
+        """ Verifica que las credenciales dadas sean las correctas """
         self.key = self.get_key()
 
         self.user = self.User_Input.text()
@@ -45,7 +45,7 @@ class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
 class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
-    """ Creates the window with the given template """
+            """ Ventana del menu """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -60,19 +60,28 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
         self.Update_Button.clicked.connect(self.update)
 
     def edit(self):
+
+        """ Editar credenciales """
+
         try:
-            self.name = self.All_List.selectedIndexes()[0].data()
-        except IndexError:
+            self.name = self.All_List.selectedIndexes()[0].data()  # Esta funcion es importante, de aqui se saca el valor de la seleccion en la lista
+        except IndexError:  # Si no hay ninguna seleccionada no se hace nada
             pass
         else:
             self.edit_window = edit_data(self.name)
             self.edit_window.show()
 
     def update(self):
+
+        """ Actualiza la lista de credenciales """
+
         self.All_List.clear()
         self.data.get_all(self.All_List)
 
     def search_by_name(self):
+
+        """ Busca las credenciales con el nombre dado """
+
         try:
             self.name = self.All_List.selectedIndexes()[0].data()
 
@@ -86,8 +95,8 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
                 msg = QtWidgets.QMessageBox()
                 msg.setWindowIcon(QtGui.QIcon(critical_icon))
                 msg.setIcon(QtWidgets.QMessageBox.Critical)
-                msg.setText("Key incorrecta")
-                msg.setWindowTitle("Key incorrecta")
+                msg.setText("Llave incorrecta")
+                msg.setWindowTitle("Llave incorrecta")
                 msg.exec_()
 
             else:
@@ -96,6 +105,9 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
                 self.show_data.show()
 
     def delete_data(self):
+
+        """ Borra las credenciales seleccionadas """
+
         self.name = self.name = self.All_List.selectedIndexes()[0].data()
         if self.get_confirmation():
             self.data.delete(self.name)
@@ -103,12 +115,15 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
             pass
 
     def add_creds(self):
+
+        """ Añade credenciales """
+
         self.add = add()
         self.add.show()
 
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Llave", "Tu llave:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and key != "":
@@ -116,10 +131,10 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
     def get_confirmation(self):
         ok, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Confirmation", "YES or NO:", QtWidgets.QLineEdit.Normal, ""
+            self, "Confirmacion", "SI o NO:", QtWidgets.QLineEdit.Normal, ""
         )
 
-        if okPressed and ok.upper() == "YES":
+        if okPressed and ok.upper() == "SI":
             return True
         else:
             return False
@@ -127,7 +142,7 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
 class see_data(QtWidgets.QMainWindow, Ui_Data):
 
-    """ Creates the window with the given template """
+    """ Ventana donde se miran los datos de las credenciales seleccionadas """
 
     def __init__(self, creds, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -144,7 +159,7 @@ class see_data(QtWidgets.QMainWindow, Ui_Data):
 
 class add(QtWidgets.QMainWindow, Ui_ADD):
 
-    """ Creates the window with the given template """
+    """ Ventana para añadir las credenciales """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -155,7 +170,7 @@ class add(QtWidgets.QMainWindow, Ui_ADD):
 
 class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
 
-    """ Creates the window with the given template """
+    """ Ventana para editar las credenciales seleccionadas """
 
     def __init__(self, name, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -168,11 +183,11 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
         new_text = self.get_edit()
         key = self.get_key()
         selection = self.sender()
-        if selection.text() == "Name":
+        if selection.text() == "Nombre":
             self.data.edit_credentials(self.name, "Name", new_text, key)
-        elif selection.text() == "Mail / User":
+        elif selection.text() == "Mail / Usuario":
             self.data.edit_credentials(self.name, "Email_Username", new_text, key)
-        elif selection.text() == "Password":
+        elif selection.text() == "Contraseña":
             self.data.edit_credentials(self.name, "Password", new_text, key)
         elif selection.text() == "Link":
             self.data.edit_credentials(self.name, "Link", new_text, key)
@@ -180,10 +195,15 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
         self.close()
 
 
-class install_methods(QtWidgets.QMainWindow):
+class install_functions(QtWidgets.QMainWindow):
+
+    """ Funciones necesarias para obtener los datos necesarios
+        para la instalacion, tales como el usuario, la contraseña
+        y la llave """
+
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Llave", "Tu llave:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and key != "":
@@ -191,7 +211,7 @@ class install_methods(QtWidgets.QMainWindow):
 
     def get_user(self):
         text, okPressed = QtWidgets.QInputDialog.getText(
-            self, "User", "Your User:", QtWidgets.QLineEdit.Normal, ""
+            self, "Usuario", "Tu usuario:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and text != "":
@@ -199,13 +219,14 @@ class install_methods(QtWidgets.QMainWindow):
 
     def get_password(self):
         text, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Password", "Your Password:", QtWidgets.QLineEdit.Normal, ""
+            self, "Contraseña", "Tu contraseña:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and text != "":
             return text
 
 
+# si la instalacion existe
 if __name__ == "__main__" and os.path.exists("Database/Padlock.db"):
     app = QtWidgets.QApplication([])
     app.setStyleSheet(open("style.css").read())
@@ -213,6 +234,7 @@ if __name__ == "__main__" and os.path.exists("Database/Padlock.db"):
     login_gui.show()
     app.exec_()
 
+# si la instalacion no existe
 elif __name__ == "__main__" and not os.path.exists("Database/Padlock.db"):
     try:
         app = QtWidgets.QApplication([])
@@ -220,7 +242,7 @@ elif __name__ == "__main__" and not os.path.exists("Database/Padlock.db"):
         login_gui = login()
         login_gui.show()
 
-        install_texts = install_methods()
+        install_texts = all_functions()
         # Asks for Key
         key = install_texts.get_key()
 

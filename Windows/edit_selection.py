@@ -32,21 +32,21 @@ class Ui_Edit_Selection(object):
     def retranslateUi(self, Edit_Selection):
         _translate = QtCore.QCoreApplication.translate
         Edit_Selection.setWindowTitle(_translate("Edit_Selection", "Edit Selection"))
-        self.Name_Radio.setText(_translate("Edit_Selection", "Namw"))
-        self.Mail_User_Radio.setText(_translate("Edit_Selection", "Mail / User"))
-        self.Password_Radio.setText(_translate("Edit_Selection", "Password"))
+        self.Name_Radio.setText(_translate("Edit_Selection", "Nombre"))
+        self.Mail_User_Radio.setText(_translate("Edit_Selection", "Mail / Usuario"))
+        self.Password_Radio.setText(_translate("Edit_Selection", "Contraseña"))
         self.Link_Radio.setText(_translate("Edit_Selection", "Link"))
 
     def get_edit(self):
         text, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Text", "New: ", QtWidgets.QLineEdit.Normal, ""
+            self, "Texto", "Nuevo: ", QtWidgets.QLineEdit.Normal, ""
         )
         if okPressed and text != "":
             return text
 
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Llave", "Tu llave:", QtWidgets.QLineEdit.Normal, ""
         )
         if okPressed and key != "":
             return key

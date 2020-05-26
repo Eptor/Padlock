@@ -9,7 +9,7 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 
 
 def encrypt(data, password):
-    """ Encrypts the data given by the user """
+    """ Encripta la data dada por el usuario """
 
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
@@ -18,7 +18,7 @@ def encrypt(data, password):
         iterations=100000,
         backend=default_backend(),
     )
-    # Generates a secure password using the given password in the parameters
+    # Genera una contraseña segura usando la contraseña dada en los parametros
     key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
     f = Fernet(key)
     EncryptedToken = f.encrypt(data.encode())
@@ -26,7 +26,7 @@ def encrypt(data, password):
 
 
 def decrypt(data, password):
-    """ Decrypts the data given by the user """
+    """ Desencripta la data dada por el usuario"""
 
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
@@ -35,7 +35,7 @@ def decrypt(data, password):
         iterations=100000,
         backend=default_backend(),
     )
-    # Generates a secure password using the given password in the parameters
+    # Genera una contraseña segura usando la contraseña dada en los parametros
     key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
     f = Fernet(key)
     DecryptedToken = f.decrypt(data.encode())
