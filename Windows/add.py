@@ -35,8 +35,6 @@ class Ui_ADD(object):
         self.Cancel_Button.clicked.connect(self.close)
         self.Add_Action_Button.clicked.connect(self.add_credentials)
 
-
-
     def retranslateUi(self, ADD):
         _translate = QtCore.QCoreApplication.translate
         ADD.setWindowTitle(_translate("ADD", "ADD"))
@@ -47,35 +45,36 @@ class Ui_ADD(object):
         self.Add_Action_Button.setText(_translate("ADD", "AÑADIR"))
         self.Cancel_Button.setText(_translate("ADD", "CANCELAR"))
 
-
-
     def get_key(self):
-        key, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Your Key:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and key != '':
+        key, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and key != "":
             return key
 
     def add_credentials(self, key):
 
-        ''' Adds a new record to the database '''
+        """ Adds a new record to the database """
         key = self.get_key()
         self.name = self.Name_Input.text()
         self.mail_user = self.Mail_Input.text()
         self.password = self.Password_Input.text()
         self.link = self.Link_Input.text()
-        if self.data.add_credentials(self.name, self.mail_user, self.password, self.link, key):
+        if self.data.add_credentials(
+            self.name, self.mail_user, self.password, self.link, key
+        ):
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f'{self.name} agregado con exito!')
-            msg.setWindowTitle('Completado')
+            msg.setText(f"{self.name} agregado con exito!")
+            msg.setWindowTitle("Completado")
             msg.exec_()
             self.close()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText(f'{self.name} no se pudo agregar')
-            msg,informativeText(e)
-            msg.setWindowTitle('Error')
+            msg.setText(f"{self.name} no se pudo agregar")
+            msg, informativeText(e)
+            msg.setWindowTitle("Error")
             msg.exec_()
             self.close()
-
-

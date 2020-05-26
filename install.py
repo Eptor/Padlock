@@ -5,8 +5,8 @@ import os
 
 
 def install(login_gui, user, password, key):
-    os.mkdir('Database')
-    connection = sqlite3.connect('Database/Padlock.db')
+    os.mkdir("Database")
+    connection = sqlite3.connect("Database/Padlock.db")
     cursor = connection.cursor()
 
     create_login_table = """CREATE TABLE `login` (
@@ -26,25 +26,23 @@ def install(login_gui, user, password, key):
         cursor.execute(create_login_table)
         cursor.execute(create_creds_table)
         app = QtWidgets.QApplication([])
-        app.setStyleSheet(open('style.css').read())
+        app.setStyleSheet(open("style.css").read())
         login_gui.show()
 
-
-
         # Inserts login credentials
-        cursor.execute(f"INSERT INTO login (username, password) VALUES ('{encrypt(user, key)}', '{encrypt(password, key)}') ")
+        cursor.execute(
+            f"INSERT INTO login (username, password) VALUES ('{encrypt(user, key)}', '{encrypt(password, key)}') "
+        )
         connection.commit()
 
         # Complete
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
-        msg.setText('Base de datos creada!')
-        msg.setWindowIcon(QtGui.QIcon('Icons/database.png'))
+        msg.setText("Base de datos creada!")
+        msg.setWindowIcon(QtGui.QIcon("Icons/database.png"))
         msg.setWindowTitle("Instalacion completa")
         msg.exec_()
         app.exec_()
 
-
     except Exception as e:
         print(e)
-

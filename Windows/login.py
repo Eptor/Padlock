@@ -5,11 +5,12 @@ import sys
 # Imported Modules
 from Defs.crypto_defs import *
 
+
 class Ui_Login_Window(object):
     def setupUi(self, Login_Window):
         Login_Window.setObjectName("Login_Window")
         Login_Window.resize(240, 167)
-        self.setWindowIcon(QtGui.QIcon('Icons/key.png'))
+        self.setWindowIcon(QtGui.QIcon("Icons/key.png"))
         self.centralwidget = QtWidgets.QWidget(Login_Window)
         self.centralwidget.setObjectName("centralwidget")
         self.User_Input = QtWidgets.QLineEdit(self.centralwidget)
@@ -55,7 +56,8 @@ class Ui_Login_Window(object):
         self.Login_Button.setShortcut(_translate("Login_Window", "Return"))
 
     def get_key(self):
-        key, okPressed = QtWidgets.QInputDialog.getText(self,"Key","Tu Key:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and key != '':
+        key, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Tu Key:", QtWidgets.QLineEdit.Normal, ""
+        )
+        if okPressed and key != "":
             return key
-

@@ -9,11 +9,12 @@ from Defs.sql_queries import *
 import pyperclip
 import os
 
-critical_icon = 'Icons/alert-triangle.png'
+critical_icon = "Icons/alert-triangle.png"
+
 
 class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
-    ''' Creates the window with the given template '''
+    """ Creates the window with the given template """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -22,10 +23,9 @@ class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
         self.Login_Button.clicked.connect(self.Check)
 
-
     def Check(self):
 
-        ''' Verificates if the given credentials are correct '''
+        """ Verificates if the given credentials are correct """
         self.key = self.get_key()
 
         self.user = self.User_Input.text()
@@ -45,7 +45,7 @@ class login(QtWidgets.QMainWindow, Ui_Login_Window):
 
 class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
-    ''' Creates the window with the given template '''
+    """ Creates the window with the given template """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
@@ -59,7 +59,6 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
         self.Edit_Button.clicked.connect(self.edit)
         self.Update_Button.clicked.connect(self.update)
 
-
     def edit(self):
         try:
             self.name = self.All_List.selectedIndexes()[0].data()
@@ -69,11 +68,9 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
             self.edit_window = edit_data(self.name)
             self.edit_window.show()
 
-
     def update(self):
         self.All_List.clear()
         self.data.get_all(self.All_List)
-
 
     def search_by_name(self):
         try:
@@ -109,15 +106,20 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
         self.add = add()
         self.add.show()
 
-
     def get_key(self):
-        key, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Your Key:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and key != '':
+        key, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and key != "":
             return key
 
     def get_confirmation(self):
-        ok, okPressed = QtWidgets.QInputDialog.getText(self, "Confirmación","SI o NO:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and ok.upper() == 'SI':
+        ok, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Confirmación", "SI o NO:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and ok.upper() == "SI":
             return True
         else:
             return False
@@ -125,17 +127,15 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
 class see_data(QtWidgets.QMainWindow, Ui_Data):
 
-    ''' Creates the window with the given template '''
+    """ Creates the window with the given template """
 
     def __init__(self, creds, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.setupUi(self)
-        self.setWindowIcon(QtGui.QIcon('Icons/search.png'))
-
+        self.setWindowIcon(QtGui.QIcon("Icons/search.png"))
 
         for i in creds:
             self.Data_List.addItem(i)
-
 
     def copy(self):
         self.copy_data = self.Data_List.selectedIndexes()[0].data()
@@ -144,71 +144,79 @@ class see_data(QtWidgets.QMainWindow, Ui_Data):
 
 class add(QtWidgets.QMainWindow, Ui_ADD):
 
-    ''' Creates the window with the given template '''
+    """ Creates the window with the given template """
 
     def __init__(self, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.data = SQL_QUERIES()
         self.setupUi(self)
-        self.setWindowIcon(QtGui.QIcon('Icons/pencil-create.png'))
+        self.setWindowIcon(QtGui.QIcon("Icons/pencil-create.png"))
 
 
 class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
 
-    ''' Creates the window with the given template '''
+    """ Creates the window with the given template """
 
-    def __init__(self, name , *args, **kwargs):
+    def __init__(self, name, *args, **kwargs):
         QtWidgets.QMainWindow.__init__(self, *args, **kwargs)
         self.data = SQL_QUERIES()
         self.name = name
         self.setupUi(self)
-        self.setWindowIcon(QtGui.QIcon('Icons/pencil-edit.png'))
-
+        self.setWindowIcon(QtGui.QIcon("Icons/pencil-edit.png"))
 
     def edit_action(self):
         new_text = self.get_edit()
         key = self.get_key()
         selection = self.sender()
-        if selection.text() == 'Nombre':
-            self.data.edit_credentials(self.name, 'Name', new_text, key)
-        elif selection.text() == 'Mail / Usuario':
-            self.data.edit_credentials(self.name, 'Email_Username', new_text, key)
-        elif selection.text() == 'Contraseña':
-            self.data.edit_credentials(self.name, 'Password', new_text, key)
-        elif selection.text() == 'Link':
-            self.data.edit_credentials(self.name, 'Link', new_text, key)
+        if selection.text() == "Nombre":
+            self.data.edit_credentials(self.name, "Name", new_text, key)
+        elif selection.text() == "Mail / Usuario":
+            self.data.edit_credentials(self.name, "Email_Username", new_text, key)
+        elif selection.text() == "Contraseña":
+            self.data.edit_credentials(self.name, "Password", new_text, key)
+        elif selection.text() == "Link":
+            self.data.edit_credentials(self.name, "Link", new_text, key)
 
         self.close()
 
-class install_methods(QtWidgets.QMainWindow):
 
+class install_methods(QtWidgets.QMainWindow):
     def get_key(self):
-        key, okPressed = QtWidgets.QInputDialog.getText(self,"Key","Tu Key:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and key != '':
+        key, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Tu Key:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and key != "":
             return key
 
     def get_user(self):
-        text, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Tu Usuario:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and text != '':
+        text, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Tu Usuario:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and text != "":
             return text
 
     def get_password(self):
-        text, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Tu Contraseña:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and text != '':
+        text, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Tu Contraseña:", QtWidgets.QLineEdit.Normal, ""
+        )
+
+        if okPressed and text != "":
             return text
 
 
-if __name__ == "__main__" and os.path.exists('Database/Padlock.db'):
+if __name__ == "__main__" and os.path.exists("Database/Padlock.db"):
     app = QtWidgets.QApplication([])
-    app.setStyleSheet(open('style.css').read())
+    app.setStyleSheet(open("style.css").read())
     login_gui = login()
     login_gui.show()
     app.exec_()
 
-elif __name__ == '__main__' and not os.path.exists('Database/Padlock.db'):
+elif __name__ == "__main__" and not os.path.exists("Database/Padlock.db"):
     try:
         app = QtWidgets.QApplication([])
-        app.setStyleSheet(open('style.css').read())
+        app.setStyleSheet(open("style.css").read())
         login_gui = login()
         login_gui.show()
 

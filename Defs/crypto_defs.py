@@ -7,15 +7,16 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 # The base process was grabbed from the Docs:
 # https://cryptography.io/en/latest/fernet/#using-passwords-with-fernet
 
+
 def encrypt(data, password):
     """ Encrypts the data given by the user """
 
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
-        salt=b'g\xe0\\F\x90\x15Dr\x1e-\xa8u\xd9Y\x0c\x82',
+        salt=b"g\xe0\\F\x90\x15Dr\x1e-\xa8u\xd9Y\x0c\x82",
         iterations=100000,
-        backend=default_backend()
+        backend=default_backend(),
     )
     # Generates a secure password using the given password in the parameters
     key = base64.urlsafe_b64encode(kdf.derive(password.encode()))
@@ -30,9 +31,9 @@ def decrypt(data, password):
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
-        salt=b'g\xe0\\F\x90\x15Dr\x1e-\xa8u\xd9Y\x0c\x82',
+        salt=b"g\xe0\\F\x90\x15Dr\x1e-\xa8u\xd9Y\x0c\x82",
         iterations=100000,
-        backend=default_backend()
+        backend=default_backend(),
     )
     # Generates a secure password using the given password in the parameters
     key = base64.urlsafe_b64encode(kdf.derive(password.encode()))

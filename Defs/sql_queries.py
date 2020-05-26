@@ -8,18 +8,17 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 # Local Modules
 from Defs.crypto_defs import encrypt, decrypt
 
-database = 'Database/Padlock.db'
-critical_icon = 'Icons/alert-triangle.png'
+database = "Database/Padlock.db"
+critical_icon = "Icons/alert-triangle.png"
 
 
 class SQL_QUERIES:
 
-    ''' Handles all related to the sqlite database '''
+    """ Handles all related to the sqlite database """
 
     def __init__(self):
         self.conn = sqlite3.connect(database)
         self.cursor = self.conn.cursor()
-
 
     def get_login_credentials(self, user, password, key):
         self.cursor.execute("SELECT username, password FROM login")
@@ -31,10 +30,9 @@ class SQL_QUERIES:
         else:
             return False
 
-
     def get_all(self, list):
 
-        ''' Retrives all the Names on the database '''
+        """ Retrives all the Names on the database """
 
         self.cursor.execute("SELECT Name FROM creds")
         self.creds = self.cursor.fetchall()
@@ -42,10 +40,9 @@ class SQL_QUERIES:
         for i in self.creds:
             list.addItem(i[0])
 
-
     def get_by_name(self, name, key):
 
-        ''' Retrives the data of a specific Name on the database '''
+        """ Retrives the data of a specific Name on the database """
 
         # Checks if the credentials exist
         self.cursor.execute(f"SELECT * FROM creds WHERE Name = '{name}'")
@@ -53,17 +50,24 @@ class SQL_QUERIES:
         nombre, mail, password, link = self.creds[:]
 
         try:
-            return nombre, decrypt(mail, key), decrypt(password, key), decrypt(link, key)
+            return (
+                nombre,
+                decrypt(mail, key),
+                decrypt(password, key),
+                decrypt(link, key),
+            )
 
         except Exception as e:
             return False
 
     def add_credentials(self, name, mail_user, password, link, key):
 
-        ''' Adds a new record to the database '''
+        """ Adds a new record to the database """
 
         try:
-            self.cursor.execute(f"INSERT INTO creds (Name, Email_Username, Password, Link) VALUES ('{name}', '{encrypt(mail_user, key)}', '{encrypt(password, key)}', '{encrypt(link, key)}')")
+            self.cursor.execute(
+                f"INSERT INTO creds (Name, Email_Username, Password, Link) VALUES ('{name}', '{encrypt(mail_user, key)}', '{encrypt(password, key)}', '{encrypt(link, key)}')"
+            )
 
         except Exception as e:
             return e
@@ -72,25 +76,27 @@ class SQL_QUERIES:
             self.conn.commit()
             return True
 
-
-
     def edit_credentials(self, name, edit_option, new_data, key):
 
-        ''' Edits an specific part of the data on a specific Name '''
+        """ Edits an specific part of the data on a specific Name """
 
         try:
 
-            if edit_option == 'Name':
-                self.cursor.execute(f"UPDATE creds SET {edit_option} = '{new_data}' WHERE Name = '{name}'")
+            if edit_option == "Name":
+                self.cursor.execute(
+                    f"UPDATE creds SET {edit_option} = '{new_data}' WHERE Name = '{name}'"
+                )
 
             else:
-                self.cursor.execute(f"UPDATE creds SET {edit_option} = '{encrypt(new_data, key)}' WHERE Name = '{name}'")
+                self.cursor.execute(
+                    f"UPDATE creds SET {edit_option} = '{encrypt(new_data, key)}' WHERE Name = '{name}'"
+                )
 
         except Exception as e:
             print(e)
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText('ocurrio un error')
+            msg.setText("ocurrio un error")
             msg.setWindowTitle("Error!")
             msg.exec_()
 
@@ -98,11 +104,10 @@ class SQL_QUERIES:
 
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f'{name} actualizado')
+            msg.setText(f"{name} actualizado")
             msg.setWindowTitle("Actualizado!")
             msg.exec_()
             self.conn.commit()
-
 
     def delete(self, name):
         try:
@@ -111,14 +116,14 @@ class SQL_QUERIES:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
             msg.setWindowIcon(QtGui.QIcon(critical_icon))
-            msg.setText(f'{name} no se pudo actualizar!')
+            msg.setText(f"{name} no se pudo actualizar!")
             msg.setInformativeText(e)
             msg.setWindowTitle("Error")
             msg.exec_()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f'{name} eliminado')
+            msg.setText(f"{name} eliminado")
             msg.setWindowTitle("Eliminado!")
             msg.exec_()
             self.conn.commit()

@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_Edit_Selection(object):
     def setupUi(self, Edit_Selection):
         Edit_Selection.setObjectName("Edit_Selection")
@@ -37,11 +38,15 @@ class Ui_Edit_Selection(object):
         self.Link_Radio.setText(_translate("Edit_Selection", "Link"))
 
     def get_edit(self):
-        text, okPressed = QtWidgets.QInputDialog.getText(self, "Texto","Nuevo: ", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and text != '':
+        text, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Texto", "Nuevo: ", QtWidgets.QLineEdit.Normal, ""
+        )
+        if okPressed and text != "":
             return text
 
     def get_key(self):
-        key, okPressed = QtWidgets.QInputDialog.getText(self, "Key","Your Key:", QtWidgets.QLineEdit.Normal, "")
-        if okPressed and key != '':
+        key, okPressed = QtWidgets.QInputDialog.getText(
+            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
+        )
+        if okPressed and key != "":
             return key
