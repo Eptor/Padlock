@@ -1,6 +1,8 @@
 # Padlock
 
-Encrypted password mannager
+Encrypted password mannager. Your passwords are safe thanks to the key based encryption; when you add credentials, the script will
+ask you for a key to encrypt the data, and it is whit that same key that you can see them, so when you want to search X credentials,
+the script will ask you for a key, and with that key it will decrypt the encrypted data.
 
 ## pre requirements
 
