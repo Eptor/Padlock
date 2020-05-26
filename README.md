@@ -1,24 +1,24 @@
 # Padlock
 
-Encrypted password mannager. Your passwords are safe thanks to the key based encryption; when you add credentials, the script will
-ask you for a key to encrypt the data, and it is whit that same key that you can see them, so when you want to search X credentials,
-the script will ask you for a key, and with that key it will decrypt the encrypted data.
+Administrador de contraseñas cifradas. Sus contraseñas están seguras gracias al cifrado basado en claves; cuando agrega credenciales, el script
+pedirle una clave para cifrar los datos, y es con esa misma clave que puede verlos, por lo que cuando desee buscar credenciales X,
+el script le pedirá una clave y con esa clave descifrará los datos cifrados.
 
-## pre requirements
+## pre requisitos
 
-You need the cryptography, sqlite3 and pyperclip modules.
+Necesitas los modulos cryptography, sqlite3 y pyperclip.
 
-```
+`` `
 pip install cryptography sqlite3 pyperclip -y
-```
+`` `
 
-## Installation
+## Instalación
 
 
-The installation is automatic, it generates the directory "Database" and adds the Padlock.db file with the requiered rows. But ig you rather create your
-own database instead of doing it automatically, you can using the following sqlite commands
+La instalación es automática, genera el directorio "Base de datos" y agrega el archivo Padlock.db con las filas requeridas. Pero si prefieres crear tu
+propia base de datos en lugar de hacerlo automáticamente, puede usar los siguientes comandos sqlite
 
-This is the database structure:
+Esta es la estructura de la base de datos:
 
 ### login:
 username, password
@@ -26,9 +26,9 @@ username, password
 ### creds:
 Name, Email_Username, Password, Link
 
-**All text type.**
+**Todos de tipo texto.**
 
-### Commands:
+### Comandos:
 
 ```
 CREATE TABLE 'creds' (
@@ -46,14 +46,14 @@ CREATE TABLE 'login' (
 );
 ```
 
-## Use
+## Uso
 
-When starting the program for the first time, the database will be installed, it will ask for your username and password to log in, as
-well as the key to decrypt your login credentials.
+Al iniciar el programa por primera vez, se instalará la base de datos, se le pedirá su nombre de usuario y contraseña para iniciar sesión, como
+así como la clave para descifrar sus credenciales de inicio de sesión.
 
-then the menu opens, in which you can search, add, edit and delete credentials from your favorite websites or applications.
+luego se abre el menú, en el que puede buscar, agregar, editar y eliminar credenciales de sus sitios web o aplicaciones favoritas.
 
-### Search, add and edit credentials
+### Buscar, agregar y editar credenciales
 
-When you do any of these actions, you will be asked for a key with which these credentials will be encrypted,
-when editing any part make sure to use the same key with which you created it to avoid errors.
+Cuando realice alguna de estas acciones, se le pedirá una clave con la que se cifrarán estas credenciales,
+Al editar cualquier parte, asegúrese de utilizar la misma clave con la que la creó para evitar errores.
