@@ -2,7 +2,7 @@
 
 Encrypted password mannager
 
-## Pre requisitos
+## pre requirements
 
 You need the cryptography, sqlite3 and pyperclip modules.
 
@@ -10,7 +10,7 @@ You need the cryptography, sqlite3 and pyperclip modules.
 pip install cryptography sqlite3 pyperclip -y
 ```
 
-## Instalación
+## Installation
 
 
 The installation is automatic, it generates the directory "Database" and adds the Padlock.db file with the requiered rows. But ig you rather create your
