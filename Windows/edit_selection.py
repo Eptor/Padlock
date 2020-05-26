@@ -32,7 +32,7 @@ class Ui_Edit_Selection(object):
     def retranslateUi(self, Edit_Selection):
         _translate = QtCore.QCoreApplication.translate
         Edit_Selection.setWindowTitle(_translate("Edit_Selection", "Edit Selection"))
-        self.Name_Radio.setText(_translate("Edit_Selection", "Namw"))
+        self.Name_Radio.setText(_translate("Edit_Selection", "Name"))
         self.Mail_User_Radio.setText(_translate("Edit_Selection", "Mail / User"))
         self.Password_Radio.setText(_translate("Edit_Selection", "Password"))
         self.Link_Radio.setText(_translate("Edit_Selection", "Link"))
