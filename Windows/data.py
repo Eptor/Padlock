@@ -24,5 +24,5 @@ class Ui_Data(object):
     def retranslateUi(self, Data):
         _translate = QtCore.QCoreApplication.translate
         Data.setWindowTitle(_translate("Data", "Data"))
-        self.Copy_Button.setText(_translate("Data", "COPIAR"))
-        self.Close_Button.setText(_translate("Data", "CERRAR"))
+        self.Copy_Button.setText(_translate("Data", "COPY"))
+        self.Close_Button.setText(_translate("Data", "CLOSE"))

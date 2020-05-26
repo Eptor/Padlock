@@ -48,16 +48,16 @@ class Ui_Login_Window(object):
     def retranslateUi(self, Login_Window):
         _translate = QtCore.QCoreApplication.translate
         Login_Window.setWindowTitle(_translate("Login_Window", "Login"))
-        self.User_Input.setPlaceholderText(_translate("Login_Window", "Usuario"))
-        self.User_Label.setText(_translate("Login_Window", "USUARIO:"))
-        self.Password_Input.setPlaceholderText(_translate("Login_Window", "Contraseña"))
-        self.Password_Label.setText(_translate("Login_Window", "PASSWORD:"))
+        self.User_Input.setPlaceholderText(_translate("Login_Window", "USER"))
+        self.User_Label.setText(_translate("Login_Window", "User:"))
+        self.Password_Input.setPlaceholderText(_translate("Login_Window", "PASSWORD"))
+        self.Password_Label.setText(_translate("Login_Window", "Password:"))
         self.Login_Button.setText(_translate("Login_Window", "LOGIN"))
         self.Login_Button.setShortcut(_translate("Login_Window", "Return"))
 
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Tu Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
         )
         if okPressed and key != "":
             return key

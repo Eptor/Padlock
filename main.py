@@ -116,10 +116,10 @@ class menu(QtWidgets.QMainWindow, Ui_Menu_Window):
 
     def get_confirmation(self):
         ok, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Confirmación", "SI o NO:", QtWidgets.QLineEdit.Normal, ""
+            self, "Confirmation", "YES or NO:", QtWidgets.QLineEdit.Normal, ""
         )
 
-        if okPressed and ok.upper() == "SI":
+        if okPressed and ok.upper() == "YES":
             return True
         else:
             return False
@@ -168,11 +168,11 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
         new_text = self.get_edit()
         key = self.get_key()
         selection = self.sender()
-        if selection.text() == "Nombre":
+        if selection.text() == "Name":
             self.data.edit_credentials(self.name, "Name", new_text, key)
-        elif selection.text() == "Mail / Usuario":
+        elif selection.text() == "Mail / User":
             self.data.edit_credentials(self.name, "Email_Username", new_text, key)
-        elif selection.text() == "Contraseña":
+        elif selection.text() == "Password":
             self.data.edit_credentials(self.name, "Password", new_text, key)
         elif selection.text() == "Link":
             self.data.edit_credentials(self.name, "Link", new_text, key)
@@ -183,7 +183,7 @@ class edit_data(QtWidgets.QMainWindow, Ui_Edit_Selection):
 class install_methods(QtWidgets.QMainWindow):
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Tu Key:", QtWidgets.QLineEdit.Normal, ""
+            self, "Key", "Your Key:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and key != "":
@@ -191,7 +191,7 @@ class install_methods(QtWidgets.QMainWindow):
 
     def get_user(self):
         text, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Tu Usuario:", QtWidgets.QLineEdit.Normal, ""
+            self, "User", "Your User:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and text != "":
@@ -199,7 +199,7 @@ class install_methods(QtWidgets.QMainWindow):
 
     def get_password(self):
         text, okPressed = QtWidgets.QInputDialog.getText(
-            self, "Key", "Tu Contraseña:", QtWidgets.QLineEdit.Normal, ""
+            self, "Password", "Your Password:", QtWidgets.QLineEdit.Normal, ""
         )
 
         if okPressed and text != "":

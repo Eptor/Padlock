@@ -34,8 +34,8 @@ class Ui_Menu_Window(object):
     def retranslateUi(self, Menu_Window):
         _translate = QtCore.QCoreApplication.translate
         Menu_Window.setWindowTitle(_translate("Menu_Window", "Menu"))
-        self.Search_Button.setText(_translate("Menu_Window", "BUSCAR"))
-        self.Add_Button.setText(_translate("Menu_Window", "AÑADIR"))
-        self.Edit_Button.setText(_translate("Menu_Window", "EDITAR"))
-        self.Delete_Button.setText(_translate("Menu_Window", "BORRAR"))
-        self.Update_Button.setText(_translate("Menu_Window", "ACTUALIZAR LISTA"))
+        self.Search_Button.setText(_translate("Menu_Window", "SEARCH"))
+        self.Add_Button.setText(_translate("Menu_Window", "ADD"))
+        self.Edit_Button.setText(_translate("Menu_Window", "EDIT"))
+        self.Delete_Button.setText(_translate("Menu_Window", "DELETE"))
+        self.Update_Button.setText(_translate("Menu_Window", "UPDATE LIST"))

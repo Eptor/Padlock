@@ -38,12 +38,12 @@ class Ui_ADD(object):
     def retranslateUi(self, ADD):
         _translate = QtCore.QCoreApplication.translate
         ADD.setWindowTitle(_translate("ADD", "ADD"))
-        self.Name_Input.setPlaceholderText(_translate("ADD", "Nombre"))
-        self.Mail_Input.setPlaceholderText(_translate("ADD", "Email/Usuario"))
-        self.Password_Input.setPlaceholderText(_translate("ADD", "Contraseña"))
+        self.Name_Input.setPlaceholderText(_translate("ADD", "Name"))
+        self.Mail_Input.setPlaceholderText(_translate("ADD", "Mail / User"))
+        self.Password_Input.setPlaceholderText(_translate("ADD", "Password"))
         self.Link_Input.setPlaceholderText(_translate("ADD", "Link"))
-        self.Add_Action_Button.setText(_translate("ADD", "AÑADIR"))
-        self.Cancel_Button.setText(_translate("ADD", "CANCELAR"))
+        self.Add_Action_Button.setText(_translate("ADD", "ADD"))
+        self.Cancel_Button.setText(_translate("ADD", "CANCEL"))
 
     def get_key(self):
         key, okPressed = QtWidgets.QInputDialog.getText(
@@ -66,14 +66,14 @@ class Ui_ADD(object):
         ):
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{self.name} agregado con exito!")
-            msg.setWindowTitle("Completado")
+            msg.setText(f"{self.name} added!")
+            msg.setWindowTitle("Completed")
             msg.exec_()
             self.close()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText(f"{self.name} no se pudo agregar")
+            msg.setText(f"{self.name} can't be added")
             msg, informativeText(e)
             msg.setWindowTitle("Error")
             msg.exec_()

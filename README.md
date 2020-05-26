@@ -4,7 +4,7 @@ Encrypted password mannager
 
 ## Pre requisitos
 
-Necesitas los modulos cryptography sqlite3 y pyperclip.
+You need the cryptography, sqlite3 and pyperclip modules.
 
 ```
 pip install cryptography sqlite3 pyperclip -y
@@ -12,9 +12,11 @@ pip install cryptography sqlite3 pyperclip -y
 
 ## Instalación
 
-La instalacion es automatica, pero si deseas crear la base de datos tu mismo deberas crearla con el nombre "Padlock.db" en el directorio "Database" dentro de la
-raiz del proyecto. La base de datos debera contener las siguientes tablas con sus respectivas filas.
 
+The installation is automatic, it generates the directory "Database" and adds the Padlock.db file with the requiered rows. But ig you rather create your
+own database instead of doing it automatically, you can using the following sqlite commands
+
+This is the database structure:
 
 ### login:
 username, password
@@ -22,9 +24,9 @@ username, password
 ### creds:
 Name, Email_Username, Password, Link
 
-**Todos de tipo texto.**
+**All text type.**
 
-Puedes usar estos comandos:
+### Commands:
 
 ```
 CREATE TABLE 'creds' (
@@ -42,14 +44,14 @@ CREATE TABLE 'login' (
 );
 ```
 
-## Uso
+## Use
 
-Al iniciar el programa por primera vez, se instalará la base de datos, te pedirá tu usuario y tu contraseña para iniciar sesion, al igual que la llave
-para desencriptar tus credenciales de login.
+When starting the program for the first time, the database will be installed, it will ask for your username and password to log in, as
+well as the key to decrypt your login credentials.
 
-luego se abrirá el menu, en el cual podras buscar, agregar, editar y eliminar credenciales de tus sitios web o aplicaciones favoritas.
+then the menu opens, in which you can search, add, edit and delete credentials from your favorite websites or applications.
 
-### Buscar, añadir y editar credenciales
+### Search, add and edit credentials
 
-Cuando hagas cualqueira de estas acciones, se te pedira una llave con la cual se encriptarán esas credenciales, al editar alguna parte asegurate de usar
-la misma llave con la que la creaste para evitar errores.
+When you do any of these actions, you will be asked for a key with which these credentials will be encrypted,
+when editing any part make sure to use the same key with which you created it to avoid errors.

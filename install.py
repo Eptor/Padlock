@@ -38,9 +38,9 @@ def install(login_gui, user, password, key):
         # Complete
         msg = QtWidgets.QMessageBox()
         msg.setIcon(QtWidgets.QMessageBox.Information)
-        msg.setText("Base de datos creada!")
+        msg.setText("Database created!")
         msg.setWindowIcon(QtGui.QIcon("Icons/database.png"))
-        msg.setWindowTitle("Instalacion completa")
+        msg.setWindowTitle("Installation completed")
         msg.exec_()
         app.exec_()
 

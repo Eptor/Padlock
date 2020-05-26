@@ -47,11 +47,11 @@ class SQL_QUERIES:
         # Checks if the credentials exist
         self.cursor.execute(f"SELECT * FROM creds WHERE Name = '{name}'")
         self.creds = self.cursor.fetchall()[0]
-        nombre, mail, password, link = self.creds[:]
+        name, mail, password, link = self.creds[:]
 
         try:
             return (
-                nombre,
+                name,
                 decrypt(mail, key),
                 decrypt(password, key),
                 decrypt(link, key),
@@ -93,10 +93,9 @@ class SQL_QUERIES:
                 )
 
         except Exception as e:
-            print(e)
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
-            msg.setText("ocurrio un error")
+            msg.setText("An error ocurred")
             msg.setWindowTitle("Error!")
             msg.exec_()
 
@@ -104,8 +103,8 @@ class SQL_QUERIES:
 
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{name} actualizado")
-            msg.setWindowTitle("Actualizado!")
+            msg.setText(f"{name} updated!")
+            msg.setWindowTitle("Update successful!")
             msg.exec_()
             self.conn.commit()
 
@@ -116,14 +115,14 @@ class SQL_QUERIES:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Critical)
             msg.setWindowIcon(QtGui.QIcon(critical_icon))
-            msg.setText(f"{name} no se pudo actualizar!")
+            msg.setText(f"{name} cant't be updated!")
             msg.setInformativeText(e)
             msg.setWindowTitle("Error")
             msg.exec_()
         else:
             msg = QtWidgets.QMessageBox()
             msg.setIcon(QtWidgets.QMessageBox.Information)
-            msg.setText(f"{name} eliminado")
-            msg.setWindowTitle("Eliminado!")
+            msg.setText(f"{name} deleted")
+            msg.setWindowTitle("Deleted!")
             msg.exec_()
             self.conn.commit()
