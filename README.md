@@ -8,9 +8,9 @@ el script le pedirá una clave y con esa clave descifrará los datos cifrados.
 
 Necesitas los modulos cryptography, sqlite3 y pyperclip.
 
-`` `
+```
 pip install cryptography sqlite3 pyperclip -y
-`` `
+```
 
 ## Instalación
 
