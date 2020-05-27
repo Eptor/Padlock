@@ -1,3 +1,7 @@
 Padlock.db
 __pycache__/
 evericons.zip
+dist/
+build/
+*.spec
+main.pyw
