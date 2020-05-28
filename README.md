@@ -15,7 +15,7 @@ pip install cryptography sqlite3 pyperclip -y
 ## Installation
 
 
-The installation is automatic, it generates the directory "Database" and adds the Padlock.db file with the requiered rows. But ig you rather create your
+The installation is automatic, it generates the directory "Database" and adds the Padlock.db file with the requiered rows. But if you rather create your
 own database instead of doing it automatically, you can using the following sqlite commands
 
 This is the database structure:
